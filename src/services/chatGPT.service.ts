@@ -52,9 +52,9 @@ const findCategory = async (prompt: string, categories: Array<string>) => {
 const identifyTopic = async (prompt: string) => {
     const response = await openai.createCompletion({
       model: 'text-davinci-003',
-      prompt: `Categoriza el tema principal sobre el que gira el texto en las menores palabras posibles y sin puntos o comas\n\nTexto:  \"${prompt}\" \nTema: \n`,
+      prompt: `Extrae el tema principal sobre el que gira el texto en las menores palabras posibles y sin puntos o comas\n\nTexto:  \"${prompt}\" \nTema: \n`,
       max_tokens: 256,
-      temperature: 0,
+      temperature: 0.5,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0
