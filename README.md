@@ -21,17 +21,23 @@ Instalar las dependencias del proyecto ejecutando el comando:
 
 `npm install`
 
+## Ejecutar el proyecto en desarrollo
+
+Para ejecutar el proyecto en ambiente de desarollo, ejecutar el comando:
+
+`npm run dev`
+
 ### Compilar el proyecto
 
 Compilar el proyecto con Typescript ejecutando el comando:
 
-`tsc`
+`npm run build`
 
-## Ejecutar el proyecto
+## Ejecutar el proyecto compilado
 
-Para ejecutar el proyecto, ejecutar el comando:
+Para ejecutar el proyecto compilado, ejecutar el comando:
 
-`npm run dev`
+`npm run start`
 
 ## Funcionalidades
 
