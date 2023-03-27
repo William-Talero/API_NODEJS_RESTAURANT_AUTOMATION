@@ -8,7 +8,7 @@ const openai = new OpenAIApi(configuration);
 const sendPrompt = async (prompt: string) => {
   console.log(prompt);
   const response = await openai.createCompletion({
-    model: "gpt-4",
+    model: "text-davinci-003",
     prompt: prompt,
     max_tokens: 256,
     temperature: 0.7,
@@ -33,7 +33,7 @@ const findCategory = async (prompt: string, categories: Array<string>) => {
     categoriesString += category + ", ";
   });
   const response = await openai.createCompletion({
-    model: "gpt-4",
+    model: "text-davinci-003",
     prompt: `Lista de categorias: ${categories}\n\n¿El texto  \"${prompt}\" a cual categoria de la lista pertenece?\n\nCategoria:\n`,
     max_tokens: 256,
     temperature: 0.7,
@@ -51,7 +51,7 @@ const findCategory = async (prompt: string, categories: Array<string>) => {
 
 const identifyTopic = async (prompt: string) => {
   const response = await openai.createCompletion({
-    model: "gpt-4",
+    model: "text-davinci-003",
     prompt: `Extrae el tema principal sobre el que gira el texto en las menores palabras posibles y sin puntos o comas\n\nTexto:  \"${prompt}\" \nTema: \n`,
     max_tokens: 256,
     temperature: 0.5,
