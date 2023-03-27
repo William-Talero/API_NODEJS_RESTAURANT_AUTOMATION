@@ -25,9 +25,9 @@ const sendPrompt = async (prompt: string) => {
 };
 
 const findCategory = async (prompt: string, categories: Array<string>) => {
-    if (!categories || !prompt) {
-        return "ERROR_REQUIRED_PARAMS_NOT_FOUND";
-    }
+  if (!categories || !prompt) {
+    return "ERROR_REQUIRED_PARAMS_NOT_FOUND";
+  }
   let categoriesString = "";
   categories.forEach((category) => {
     categoriesString += category + ", ";
@@ -50,26 +50,25 @@ const findCategory = async (prompt: string, categories: Array<string>) => {
 };
 
 const identifyTopic = async (prompt: string) => {
-    const response = await openai.createCompletion({
-      model: 'gpt-4',
-      prompt: `Extrae el tema principal sobre el que gira el texto en las menores palabras posibles y sin puntos o comas\n\nTexto:  \"${prompt}\" \nTema: \n`,
-      max_tokens: 256,
-      temperature: 0.5,
-      top_p: 1,
-      frequency_penalty: 0,
-      presence_penalty: 0
-    });
-    console.log(response.data.choices[0].text);
-    const answer =
-      response.data.choices[0].text !== undefined
-        ? response.data.choices[0].text.replace(/\n/g, '')
-        : "I don't know";
-    return answer;
-  };
-  
+  const response = await openai.createCompletion({
+    model: "gpt-4",
+    prompt: `Extrae el tema principal sobre el que gira el texto en las menores palabras posibles y sin puntos o comas\n\nTexto:  \"${prompt}\" \nTema: \n`,
+    max_tokens: 256,
+    temperature: 0.5,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  });
+  console.log(response.data.choices[0].text);
+  const answer =
+    response.data.choices[0].text !== undefined
+      ? response.data.choices[0].text.replace(/\n/g, "")
+      : "I don't know";
+  return answer;
+};
 
 export default {
   sendPrompt,
   findCategory,
-  identifyTopic
+  identifyTopic,
 };
