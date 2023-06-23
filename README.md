@@ -1,5 +1,5 @@
 # Proyecto NodeJS - Typescript con OpenAI
-Este proyecto es una API construida con NodeJS y Typescript que utiliza el API de OpenAI para ofrecer funcionalidades de respuestas, categorización y identificación del tema central de un texto.
+Este proyecto es una API construida con NodeJS y Typescript que utiliza el API de OpenAI para ofrecer funcionalidades de categorización y automatización para un servicio de automatización de restaurantes.
 
 ## Requisitos
 
@@ -41,6 +41,5 @@ Para ejecutar el proyecto compilado, ejecutar el comando:
 
 ## Funcionalidades
 
-- Respuestas: Dado un texto, el sistema devuelve una respuesta.
-- Categorización: Dado un texto y una lista de categorias el sistema clasifica el texto en una categoría.
-- Identificación del tema central: Dado un texto, el sistema identifica el tema central del texto.
+- Categorización de productos.
+- Sugerencia de productos, según requerimientos del cliente

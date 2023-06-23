@@ -3,10 +3,10 @@ import { Configuration, OpenAIApi } from "openai";
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
+
 const openai = new OpenAIApi(configuration);
 
 const sendPrompt = async (prompt: string) => {
-  console.log(prompt);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: prompt,
@@ -16,7 +16,6 @@ const sendPrompt = async (prompt: string) => {
     frequency_penalty: 0,
     presence_penalty: 0,
   });
-  console.log(response.data.choices[0].text);
   const answer =
     response.data.choices[0].text !== undefined
       ? response.data.choices[0].text.replace(/\n/g, "")
@@ -41,7 +40,6 @@ const findCategory = async (prompt: string, categories: Array<string>) => {
     frequency_penalty: 0,
     presence_penalty: 0,
   });
-  console.log(response.data.choices[0].text);
   const answer =
     response.data.choices[0].text !== undefined
       ? response.data.choices[0].text.replace(/\n/g, "")
@@ -59,7 +57,57 @@ const identifyTopic = async (prompt: string) => {
     frequency_penalty: 0,
     presence_penalty: 0,
   });
-  console.log(response.data.choices[0].text);
+  const answer =
+    response.data.choices[0].text !== undefined
+      ? response.data.choices[0].text.replace(/\n/g, "")
+      : "I don't know";
+  return answer;
+};
+
+const identifyMenuProductCategory = async (
+  prompt: string,
+  categories: Array<string>
+) => {
+  if (!categories || !prompt) {
+    return "ERROR_REQUIRED_PARAMS_NOT_FOUND";
+  }
+  let categoriesString = "";
+  categories.forEach((category) => {
+    categoriesString += category + ", ";
+  });
+  const promptString = `Lista de categorías: ${categories}\n\n¿El texto es de un comensal que quiere un platillo  \"${prompt}\" a cual categoría de la lista pertenece lo que el usuario quiere?\n\nCategoría:\n`;
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: promptString,
+    max_tokens: 256,
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  });
+  const answer =
+    response.data.choices[0].text !== undefined
+      ? response.data.choices[0].text.replace(/\n/g, "")
+      : "I don't know";
+  return answer;
+};
+
+const identifySuggestProduct = async (prompt: string, products: Array<any>) => {
+  if (!products) {
+    return "ERROR_REQUIRED_PARAMS_NOT_FOUND";
+  }
+  let productsString = JSON.stringify(products);
+  const promptString = `Lista de productos: ${productsString}\n\n¿El texto es de un comensal que quiere un platillo  \"${prompt}\" cual es el producto mas recomendado para el comensal?\n\ Dame unicamente el Id del producto recomendado:\n`;
+  console.log(promptString);
+  const response = await openai.createCompletion({
+    model: "text-davinci-003",
+    prompt: promptString,
+    max_tokens: 256,
+    temperature: 0.7,
+    top_p: 1,
+    frequency_penalty: 0,
+    presence_penalty: 0,
+  });
   const answer =
     response.data.choices[0].text !== undefined
       ? response.data.choices[0].text.replace(/\n/g, "")
@@ -71,4 +119,6 @@ export default {
   sendPrompt,
   findCategory,
   identifyTopic,
+  identifyMenuProductCategory,
+  identifySuggestProduct,
 };

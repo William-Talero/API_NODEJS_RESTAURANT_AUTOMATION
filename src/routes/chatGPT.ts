@@ -27,7 +27,7 @@ const router = Router();
  *                   example: OK
  *                 data:
  *                   type: array
- *                   items:
+ *                   products:
  *                     type: object
  */
 router.get("/", verifyJWT, sendPrompt);
@@ -50,7 +50,7 @@ router.get("/", verifyJWT, sendPrompt);
  *                   example: OK
  *                 data:
  *                   type: array
- *                   items:
+ *                   products:
  *                     type: object
  */
 router.get("/category", verifyJWT, findCategory);
@@ -73,7 +73,7 @@ router.get("/category", verifyJWT, findCategory);
  *                   example: OK
  *                 data:
  *                   type: array
- *                   items:
+ *                   products:
  *                     type: object
  */
 router.get("/topic", verifyJWT, identifyTopic);
