@@ -98,7 +98,6 @@ const identifySuggestProduct = async (prompt: string, products: Array<any>) => {
   }
   let productsString = JSON.stringify(products);
   const promptString = `Lista de productos: ${productsString}\n\n¿El texto es de un comensal que quiere un platillo  \"${prompt}\" cual es el producto mas recomendado para el comensal?\n\ Dame unicamente el Id del producto recomendado:\n`;
-  console.log(promptString);
   const response = await openai.createCompletion({
     model: "text-davinci-003",
     prompt: promptString,
