@@ -16,6 +16,6 @@ router.get("/get-product/:id", verifyJWT, getProduct);
 router.post("/", verifyJWT,createProduct);
 router.put("/update-product/:id", verifyJWT, updateProduct);
 router.delete("/delete-product/:id", verifyJWT, deleteProduct);
-router.get("/product-suggest", verifyJWT, getProductSuggest);
+router.post("/product-suggest", verifyJWT, getProductSuggest);
 
 export { router };
