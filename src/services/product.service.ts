@@ -27,7 +27,7 @@ const deleteProduct = (id: string) => {
 };
 
 const getProductCategory = (prompt: string) => {
-  const categories = ["Pastas", "Pizzas", "Bebidas", "Postres", "General"];
+  const categories = ["Pastas", "Pizzas", "Bebidas", "Postres", "General", "Carnes", "Vegano"];
   const productSuggest = ChatGPTService.identifyMenuProductCategory(
     prompt,
     categories
