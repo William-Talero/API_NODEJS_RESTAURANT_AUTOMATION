@@ -47,7 +47,7 @@ const getProductByCategory = (category: string) => {
       })
         .sort({ category: -1 })
         .limit(20))
-    : (product = ProductModel.find().sort({ top: -1 }).limit(20));
+    : (product = ProductModel.find().sort({ category: -1 }).limit(20));
   return product;
 };
 
