@@ -8,7 +8,7 @@ const createProduct = (product: Product) => {
 };
 
 const getProducts = () => {
-  return ProductModel.find();
+  return ProductModel.find().sort({ category: -1 });
 };
 
 const getProduct = (id: string) => {
@@ -45,7 +45,7 @@ const getProductByCategory = (category: string) => {
           { subcategory2: category },
         ],
       })
-        .sort({ top: -1 })
+        .sort({ category: -1 })
         .limit(20))
     : (product = ProductModel.find().sort({ top: -1 }).limit(20));
   return product;
