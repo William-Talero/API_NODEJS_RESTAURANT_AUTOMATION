@@ -76,7 +76,6 @@ const identifyMenuProductCategory = async (
   prompt: string,
   categories: Array<string>
 ) => {
-  console.log(prompt + ": " + categories);
   if (!categories || !prompt) {
     return "ERROR_REQUIRED_PARAMS_NOT_FOUND";
   }

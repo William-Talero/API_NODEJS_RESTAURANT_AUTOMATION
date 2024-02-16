@@ -68,7 +68,6 @@ const getProductSuggest = async (req: Request, res: Response) => {
     const body = req.body;
     let finalProductSuggest = {};
     const response = await productService.getProductCategory(body.prompt);
-    console.log(response);
     if (typeof response === "string" && response.includes("ERROR")) {
       return res.status(403).send({ message: response });
     }
