@@ -72,13 +72,13 @@ const getProductSuggest = async (req: Request, res: Response) => {
     if (typeof response === "string" && response.includes("ERROR")) {
       return res.status(403).send({ message: response });
     }
-    const products = await productService.getProductByCategory(response);
+    const products = await productService.getProductByCategory(response || "");
     const productSuggestions = await productService.getProductSuggest(
       body.prompt,
       products
     );
     productSuggestions !== "null"
-      ? (finalProductSuggest = await getProductById(productSuggestions))
+      ? (finalProductSuggest = await getProductById(productSuggestions || ""))
       : (finalProductSuggest = {});
     res.status(200).send({
       status: 200,
